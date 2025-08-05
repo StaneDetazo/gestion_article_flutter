@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tikle2_vue/screens/admin/article_list.dart';
 import 'common/profile.dart';
 import 'manage_articles.dart';
 import 'sales_list.dart';
@@ -12,7 +13,8 @@ class _AdminHomeState extends State<AdminHome> {
   int currentIndex = 0;
 
   final pages = [
-    ManageArticles(),
+    //ManageArticles(),
+    ArticleListAdminScreen(),
     SalesList(),
     ProfileScreen(),
   ];

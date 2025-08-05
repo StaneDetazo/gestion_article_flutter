@@ -12,7 +12,8 @@ class _ClientHomeState extends State<ClientHome> {
   int currentIndex = 0;
 
   final pages = [
-    ArticleListScreen(), // Liste des articles avec bouton "ajouter au panier"
+    //ArticleListScreen(), // Liste des articles avec bouton "ajouter au panier"
+    ArticleListScreen(),
     CartScreen(),        // Panier
     ProfileScreen(),     // Profil
   ];
