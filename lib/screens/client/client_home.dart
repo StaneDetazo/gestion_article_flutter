@@ -25,8 +25,8 @@ class _ClientHomeState extends State<ClientHome> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
-        selectedItemColor: Colors.teal,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.redAccent,
+        unselectedItemColor: Colors.black54,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.store),

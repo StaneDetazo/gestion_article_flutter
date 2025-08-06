@@ -42,42 +42,90 @@ class _ArticleListAdminScreenState extends State<ArticleListAdminScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text('Gestion des Articles'),
+        backgroundColor: Colors.redAccent,
+        foregroundColor: Colors.white,
+        title: const Text(
+          'Gestion des Articles',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
       ),
-      body: ListView.builder(
+      body: articles.isEmpty
+          ? const Center(
+        child: Text(
+          'Aucun article pour le moment.',
+          style: TextStyle(color: Colors.black54),
+        ),
+      )
+          : ListView.builder(
         itemCount: articles.length,
         itemBuilder: (_, i) {
           final a = articles[i];
           return Card(
-            margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            color: Colors.white,
+            elevation: 3,
+            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: ListTile(
-              title: Text(a.name),
-              subtitle: Text('Prix: ${a.price} FCFA'),
+              leading: CircleAvatar(
+                backgroundColor: Colors.red[900],
+                child: Text(
+                  a.name[0].toUpperCase(),
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+              title: Text(
+                a.name,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+              subtitle: Text(
+                'Prix: ${a.price} FCFA',
+                style: const TextStyle(color: Colors.black87),
+              ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.edit, color: Colors.orange),
+                    icon: const Icon(Icons.edit, color: Colors.black87),
                     onPressed: () => openForm(article: a),
                   ),
                   IconButton(
-                    icon: Icon(Icons.delete, color: Colors.red),
+                    icon: const Icon(Icons.delete, color: Colors.red),
                     onPressed: () => showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
-                        title: Text('Confirmer suppression'),
-                        content: Text('Supprimer "${a.name}" ?'),
+                        backgroundColor: Colors.white,
+                        title: const Text(
+                          'Confirmer la suppression',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        content: Text(
+                          'Supprimer "${a.name}" ?',
+                          style: const TextStyle(color: Colors.black87),
+                        ),
                         actions: [
                           TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: Text('Annuler')),
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text(
+                              'Annuler',
+                              style: TextStyle(color: Colors.black87),
+                            ),
+                          ),
                           TextButton(
-                              onPressed: () {
-                                deleteArticle(a.id);
-                                Navigator.pop(context);
-                              },
-                              child: Text('Supprimer')),
+                            onPressed: () {
+                              deleteArticle(a.id);
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                              'Supprimer',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -90,7 +138,8 @@ class _ArticleListAdminScreenState extends State<ArticleListAdminScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => openForm(),
-        child: Icon(Icons.add),
+        backgroundColor: Colors.red[800],
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }

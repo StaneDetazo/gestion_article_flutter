@@ -44,29 +44,47 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text('Mon Panier'),
-        backgroundColor: Colors.teal,
+        title: const Text('Mon Panier', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.red[800],
+        centerTitle: true,
+        elevation: 0,
         actions: [
           IconButton(
             onPressed: clearCart,
-            icon: const Icon(Icons.delete),
+            icon: const Icon(Icons.delete, color: Colors.redAccent),
             tooltip: 'Vider le panier',
           ),
         ],
       ),
       body: cartItems.isEmpty
-          ? const Center(child: Text('Panier vide'))
+          ? const Center(
+        child: Text(
+          'Panier vide',
+          style: TextStyle(color: Colors.white70, fontSize: 18),
+        ),
+      )
           : ListView.builder(
         itemCount: cartItems.length,
         itemBuilder: (context, index) {
           final item = cartItems[index];
-          return ListTile(
-            title: Text(item['name']),
-            subtitle: Text('${item['price']} FCFA'),
-            trailing: IconButton(
-              icon: const Icon(Icons.remove_circle, color: Colors.red),
-              onPressed: () => removeItem(index),
+          return Card(
+            color: Colors.grey[900],
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: ListTile(
+              title: Text(
+                item['name'],
+                style: const TextStyle(color: Colors.white),
+              ),
+              subtitle: Text(
+                '${item['price']} FCFA',
+                style: TextStyle(color: Colors.red[300]),
+              ),
+              trailing: IconButton(
+                icon: const Icon(Icons.remove_circle, color: Colors.redAccent),
+                onPressed: () => removeItem(index),
+              ),
             ),
           );
         },
@@ -74,9 +92,9 @@ class _CartScreenState extends State<CartScreen> {
       bottomNavigationBar: cartItems.isNotEmpty
           ? Container(
         padding: const EdgeInsets.all(16),
+        color: Colors.grey[900],
         child: ElevatedButton.icon(
           onPressed: () {
-            // Paiement fictif
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Paiement effectué')),
             );
@@ -85,8 +103,10 @@ class _CartScreenState extends State<CartScreen> {
           icon: const Icon(Icons.payment),
           label: Text('Payer ${getTotal()} FCFA'),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.teal,
+            backgroundColor: Colors.redAccent,
             minimumSize: const Size(double.infinity, 50),
+            textStyle:
+            const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
       )

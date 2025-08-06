@@ -35,7 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    // Navigation selon rôle
     if (user.role == 'admin') {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (_) => AdminHome()));
@@ -55,30 +54,89 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Connexion")),
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.red[800],
+        title: const Text("Connexion", style: TextStyle(color: Colors.white)),
+        centerTitle: true,
+        elevation: 0,
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(24.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (errorMessage != null)
-              Text(errorMessage!, style: TextStyle(color: Colors.red)),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Text(
+                  errorMessage!,
+                  style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold),
+                ),
+              ),
             TextField(
               controller: emailCtrl,
-              decoration: InputDecoration(labelText: "Email"),
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: "Email",
+                labelStyle: TextStyle(color: Colors.red[300]),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red.shade700),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red.shade400, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                fillColor: Colors.white12,
+                filled: true,
+              ),
+              keyboardType: TextInputType.emailAddress,
             ),
+            const SizedBox(height: 16),
             TextField(
               controller: passwordCtrl,
-              decoration: InputDecoration(labelText: "Mot de passe"),
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: "Mot de passe",
+                labelStyle: TextStyle(color: Colors.red[300]),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.redAccent),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red.shade700, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                fillColor: Colors.white12,
+                filled: true,
+              ),
               obscureText: true,
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(onPressed: login, child: Text("Se connecter")),
+            const SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.redAccent,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                onPressed: login,
+                child: const Text("Se connecter"),
+              ),
+            ),
+            const SizedBox(height: 12),
             TextButton(
               onPressed: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => RegisterScreen()));
               },
-              child: const Text("Créer un compte"),
+              child: Text(
+                "Créer un compte",
+                style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.w600),
+              ),
             )
           ],
         ),

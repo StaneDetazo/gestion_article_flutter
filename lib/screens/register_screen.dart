@@ -41,39 +41,117 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Inscription")),
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.red[800],
+        title: const Text("Inscription", style: TextStyle(color: Colors.white)),
+        centerTitle: true,
+        elevation: 0,
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(24.0),
         child: Form(
           key: _formKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (errorMessage != null)
-                Text(errorMessage!, style: TextStyle(color: Colors.red)),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: Text(
+                    errorMessage!,
+                    style: const TextStyle(
+                      color: Colors.redAccent,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               TextFormField(
                 controller: emailCtrl,
-                decoration: InputDecoration(labelText: 'Email'),
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  labelStyle: TextStyle(color: Colors.red[300]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red.shade700),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red.shade400, width: 2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  fillColor: Colors.white12,
+                  filled: true,
+                ),
                 validator: (v) =>
                 (v == null || !v.contains('@')) ? "Email invalide" : null,
+                keyboardType: TextInputType.emailAddress,
               ),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: passwordCtrl,
-                decoration: InputDecoration(labelText: 'Mot de passe'),
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Mot de passe',
+                  labelStyle: TextStyle(color: Colors.red[300]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red.shade700),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red.shade400, width: 2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  fillColor: Colors.white12,
+                  filled: true,
+                ),
                 obscureText: true,
-                validator: (v) => (v == null || v.length < 6)
-                    ? "Mot de passe >= 6 caractères"
-                    : null,
+                validator: (v) =>
+                (v == null || v.length < 6) ? "Mot de passe >= 6 caractères" : null,
               ),
+              const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: role,
+                decoration: InputDecoration(
+                  labelText: 'Rôle',
+                  labelStyle: TextStyle(color: Colors.red[300]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red.shade700),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red.shade400, width: 2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white12,
+                ),
+                dropdownColor: Colors.black,
+                style: const TextStyle(color: Colors.white),
                 items: ['client', 'admin']
-                    .map((r) => DropdownMenuItem(value: r, child: Text(r)))
+                    .map((r) => DropdownMenuItem(
+                  value: r,
+                  child: Text(r, style: const TextStyle(color: Colors.white)),
+                ))
                     .toList(),
                 onChanged: (v) => setState(() => role = v ?? 'client'),
-                decoration: InputDecoration(labelText: 'Rôle'),
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(onPressed: register, child: Text("S'inscrire")),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                height: 48,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    textStyle:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: register,
+                  child: const Text("S'inscrire"),
+                ),
+              ),
             ],
           ),
         ),

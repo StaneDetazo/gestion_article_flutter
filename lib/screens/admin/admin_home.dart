@@ -26,7 +26,7 @@ class _AdminHomeState extends State<AdminHome> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
-        selectedItemColor: Colors.teal,
+        selectedItemColor: Colors.redAccent,
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
