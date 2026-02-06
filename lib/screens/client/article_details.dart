@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ArticleDetailsScreen extends StatelessWidget {
   final Map<String, dynamic> article;
 
-  const ArticleDetailsScreen({required this.article});
+  const ArticleDetailsScreen({super.key, required this.article});
 
   Future<void> addToCart(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();

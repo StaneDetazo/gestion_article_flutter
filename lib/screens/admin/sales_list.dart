@@ -7,6 +7,8 @@ class SalesList extends StatelessWidget {
     {'client': 'Carlos', 'article': 'Clavier', 'total': 15000},
   ];
 
+  SalesList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

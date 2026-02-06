@@ -4,6 +4,8 @@ import 'article_list.dart';
 import 'cart.dart';
 
 class ClientHome extends StatefulWidget {
+  const ClientHome({super.key});
+
   @override
   State<ClientHome> createState() => _ClientHomeState();
 }

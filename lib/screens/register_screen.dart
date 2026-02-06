@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../utils/user_manager.dart';
 
 class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
@@ -111,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: role,
+                initialValue: role,
                 decoration: InputDecoration(
                   labelText: 'Rôle',
                   labelStyle: TextStyle(color: Colors.red[300]),

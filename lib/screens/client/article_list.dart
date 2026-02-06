@@ -26,6 +26,8 @@ class ArticleListScreen extends StatelessWidget {
     },
   ];
 
+  ArticleListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

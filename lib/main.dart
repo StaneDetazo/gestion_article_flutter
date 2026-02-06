@@ -12,6 +12,8 @@ void main() {
 }
 
 class ArticleManagerApp extends StatelessWidget {
+  const ArticleManagerApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

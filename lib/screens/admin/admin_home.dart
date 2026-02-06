@@ -5,6 +5,8 @@ import 'manage_articles.dart';
 import 'sales_list.dart';
 
 class AdminHome extends StatefulWidget {
+  const AdminHome({super.key});
+
   @override
   State<AdminHome> createState() => _AdminHomeState();
 }

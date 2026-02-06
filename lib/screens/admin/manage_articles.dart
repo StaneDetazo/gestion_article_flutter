@@ -7,6 +7,8 @@ class ManageArticles extends StatelessWidget {
     {'name': 'Clavier', 'price': '15000'},
   ];
 
+  ManageArticles({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

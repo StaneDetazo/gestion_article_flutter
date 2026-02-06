@@ -3,6 +3,8 @@ import '../../utils/article_manager.dart';
 import 'article_form_admin.dart';
 
 class ArticleListAdminScreen extends StatefulWidget {
+  const ArticleListAdminScreen({super.key});
+
   @override
   State<ArticleListAdminScreen> createState() => _ArticleListAdminScreenState();
 }
